@@ -1,0 +1,27 @@
+#Makefile for ECE361HW3 MLStree 
+
+CC = gcc
+CFLAGS = -c -Wall
+
+OBJ = MLStree
+#HDRS = MLSapp_Helpers.h MLStree.h
+
+all: $(OBJ)
+
+$(OBJ): main.o MLStree_starter.o MLSapp_Helpers.o
+	$(CC) main.o MLStree_starter.o MLSapp_Helpers.o -o $(OBJ)
+	
+MLStree_starter.o: MLStree_starter.c
+	$(CC) $(CFLAGS) MLStree_starter.c
+	
+MLSapp_Helpers.o: MLSapp_Helpers.c
+	$(CC) $(CFLAGS) MLSapp_Helpers.c
+
+main.o: main.c
+	$(CC) $(CFLAGS) main.c
+	
+exec:
+	./MLStree
+
+clean:
+	rm -rf MLStree
